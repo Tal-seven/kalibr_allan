@@ -83,6 +83,15 @@ int main(int argc, char **argv) {
             dataIMU.push_back(s1->angular_velocity.y);
             dataIMU.push_back(s1->angular_velocity.z);
         }
+	else if(imuTopic != m.getTopic())
+	{
+	    ROS_INFO("Imu topic %s, Does not match any in rosbag: %s\n"
+		     "Please provide the correct topic name," 
+		     "qualified by appropriate namespaces\n"
+		     "eg: /<my-namespace>/<my-sub-namespace>/<my-imu-topic>\n",
+		      imuTopic.c_str(),pathBag.c_str());
+	    exit(EXIT_FAILURE);
+	}
 
     }
 
